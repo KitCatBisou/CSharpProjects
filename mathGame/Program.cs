@@ -5,37 +5,36 @@ string question = "null";
 int answer = 0;
 int points = 0;
 
+Console.WriteLine("--- MATH GAME START ---");
 
 for (int i = 0; i < questions; i++) {
     int num1 = rnd.Next(1, 100);
     int num2 = rnd.Next(1, 100);
     int signal = rnd.Next(4);
-    
 
-    if (signal == 0) {
-        question = $"How much is {num1} + {num2}";
-        answer = num1 + num2;
-    }
-    
-    else if (signal == 1) {
-       question = $"How much is {num1} - {num2}";
-       answer = num1 - num2;
-    }
-    
-    else if (signal == 2) {
-        question = $"How much is {num1} * {num2}";
-        answer = num1 * num2;
-    }
-    else {
-        while (num1 % num2 != 0)
-        {
-            num1 = rnd.Next(1, 100);
-            num2 = rnd.Next(1, 100);
-        }
+    switch (signal) {
+        case 0:
+            question = $"Question {i + 1}: How much is {num1} + {num2}?";
+            answer = num1 + num2;
+            break;
+        case 1:
+            question = $"Question {i + 1}: How much is {num1} - {num2}?";
+            answer = num1 - num2;
+            break;
+        case 2:
+            question = $"Question {i + 1}: How much is {num1} * {num2}?";
+            answer = num1 * num2;
+            break;
+        case 3:
+            while (num1 % num2 != 0)
+            {
+                num1 = rnd.Next(1, 100);
+                num2 = rnd.Next(1, 100);
+            }
 
-        question = $"How much is {num1} / {num2}"; 
-        answer = num1 / num2;
-        
+            question = $"Question {i + 1}: How much is {num1} / {num2}?"; 
+            answer = num1 / num2;
+            break;
     }
     
     Console.WriteLine(question);
@@ -59,6 +58,8 @@ for (int i = 0; i < questions; i++) {
     {
         Console.WriteLine("That is not a valid number!");
     }
+   
+    Console.WriteLine($"--------------------------");
 }
 
 Console.WriteLine($"Game over\nYou finished with {points} points!");
