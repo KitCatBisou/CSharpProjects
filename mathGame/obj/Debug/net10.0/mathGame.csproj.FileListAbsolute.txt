@@ -12,3 +12,4 @@
 /Users/kitcat/CsharpProjects/mathGame/obj/Debug/net10.0/mathGame.pdb
 /Users/kitcat/CsharpProjects/mathGame/obj/Debug/net10.0/mathGame.genruntimeconfig.cache
 /Users/kitcat/CsharpProjects/mathGame/obj/Debug/net10.0/ref/mathGame.dll
+/Users/kitcat/CsharpProjects/mathGame/obj/Debug/net10.0/mathGame.sourcelink.json
