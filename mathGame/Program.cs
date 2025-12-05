@@ -7,7 +7,7 @@ string question = "null";
 for (int i = 0; i < questions; i++) {
     int num1 = rnd.Next(1, 100);
     int num2 = rnd.Next(1, 100);
-    int signal = rnd.Next(3);
+    int signal = rnd.Next(4);
     
 
     if (signal == 0) {
@@ -22,17 +22,15 @@ for (int i = 0; i < questions; i++) {
         question = $"How much is {num1} * {num2}";
     }
     else {
-        question = $"How much is {num1} / {num2}";
+        while (num1 % num2 != 0)
+        {
+            num1 = rnd.Next(1, 100);
+            num2 = rnd.Next(1, 100);
+        }
+
+        question = $"How much is {num1} / {num2}"; 
+        
     }
     Console.WriteLine(question);
     string answer = Console.ReadLine();
-    
-    /*
-    if (dividend1 % dividend2 == 0)
-    {
-        string question = $"How much is {dividend1} x {dividend2}";
-        Console.WriteLine(question);
-        string answer = Console.ReadLine();
-    }
-*/
 }
