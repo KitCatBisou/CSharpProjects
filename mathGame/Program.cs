@@ -1,8 +1,12 @@
-﻿bool gameRunning = true;
+﻿/*
+ missing: adding way to show high score, right now it only shows scores but not ranked by which is better
+ */
+
+bool gameRunning = true;
+List<GameScore> highScore = new List<GameScore>();
 
 while (gameRunning)
 {
-    Console.Clear();
     Console.WriteLine("--- MENU ---");
     Console.WriteLine("P - Play Game");
     Console.WriteLine("H - View High Scores");
@@ -13,6 +17,13 @@ while (gameRunning)
     {
         gameRunning = false;
     }
+    else if (choice == "H")
+    {
+        for (int i = 0; i < highScore.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {highScore[i].Name} {highScore[i].Points}");
+        }
+    }
 
     else if (choice == "P")
     {
@@ -21,6 +32,7 @@ while (gameRunning)
         string question = "null";
         int answer = 0;
         int points = 0;
+        string userName = "null";
         
         Console.WriteLine("--- MATH GAME START ---");
         for (int i = 0; i < questions; i++) {
@@ -79,6 +91,13 @@ while (gameRunning)
         }
 
         Console.WriteLine($"Game over\nYou finished with {points} points!");
+        Console.WriteLine($"Write your username");
+        userName = Console.ReadLine();
+        GameScore newEntry = new GameScore();
+        newEntry.Name = userName;
+        newEntry.Points = points;
+        
+        highScore.Add(newEntry);
     }
 }
 
