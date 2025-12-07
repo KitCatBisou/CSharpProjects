@@ -1,15 +1,11 @@
-﻿/*
- missing: adding way to show high score, right now it only shows scores but not ranked by which is better
- */
-
-bool gameRunning = true;
-List<GameScore> highScore = new List<GameScore>();
+﻿bool gameRunning = true;
+List<GameScore> scoreHistory = new List<GameScore>();
 
 while (gameRunning)
 {
     Console.WriteLine("--- MENU ---");
     Console.WriteLine("P - Play Game");
-    Console.WriteLine("H - View High Scores");
+    Console.WriteLine("H - View Score History");
     Console.WriteLine("Q - Quit");
     string choice = Console.ReadLine().ToUpper();
 
@@ -19,9 +15,9 @@ while (gameRunning)
     }
     else if (choice == "H")
     {
-        for (int i = 0; i < highScore.Count; i++)
+        for (int i = 0; i < scoreHistory.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {highScore[i].Name} {highScore[i].Points}");
+            Console.WriteLine($"{i + 1}. {scoreHistory[i].Name} {scoreHistory[i].Points}");
         }
     }
 
@@ -97,7 +93,7 @@ while (gameRunning)
         newEntry.Name = userName;
         newEntry.Points = points;
         
-        highScore.Add(newEntry);
+        scoreHistory.Add(newEntry);
     }
 }
 
