@@ -16,7 +16,8 @@ namespace GladiatorArena
 		}
 		public void Attack(Gladiator enemy)
 		{
-			//make a function for attacking an npc
+			enemy.Health -= Damage;
+			Console.WriteLine($"{Name} hits {enemy.Name} for {Damage} damage!");
 		}
 
 	}
@@ -25,7 +26,7 @@ namespace GladiatorArena
 	{
 		static void Main(string[] args)
 		{
-			
+			Gladiator main = new Gladiator("Cratus", 100, 10);
 		}
 	}
 };
