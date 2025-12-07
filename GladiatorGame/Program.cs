@@ -2,6 +2,10 @@
 
 namespace GladiatorArena
 {
+	/*
+	 GLADIATOR CLASS WITH FUNCTION FOR ATTACK
+	 USES RNG SYSTEM WITH RANDOM
+	 */
 	class Gladiator
 	{
 		static Random rnd = new Random();
@@ -40,27 +44,70 @@ namespace GladiatorArena
 
 	}
 	
+	/*
+	 MAIN GAME FUNCTION
+	 */
 	class Program
 	{
+		/*
+		 DISPLAY HEALTH FUNCTION
+		 */
+		static void DrawHealth(Gladiator g1, Gladiator g2)
+		{
+			if (g1.Health < 0)
+			{
+				g1.Health = 0;
+			}
+
+			if (g2.Health < 0)
+			{
+				g2.Health = 0;
+			}
+			Console.WriteLine($"--- STATUS ---");
+			Console.WriteLine($"{g1.Name}: {g1.Health} HP");
+			Console.WriteLine($"{g2.Name}: {g2.Health} HP");
+			Console.WriteLine("--------------");
+		}
 		static void Main(string[] args)
 		{
-			Gladiator hero = new Gladiator("Cratus", 100, 10);
-			Gladiator enemy = new Gladiator("Maximus", 100, 8);
+			// STARTING CODE TO NAME CHARACTER
+			
+			Console.Title = "Gladiator Arena";
+			Console.WriteLine("Name your fighter: ");
+			string userName = Console.ReadLine();
+			Gladiator hero = new Gladiator(userName, 100, 10);
+			Gladiator enemy = new Gladiator("Maximus", 100,10);
+			
+			//GAME BEGINS
+			
+			Console.WriteLine("--------------\nLet the game begin:");
 
 			while (hero.Health > 0 && enemy.Health > 0)
 			{
+				// PLAYER TURN
 				hero.Attack(enemy);
+				DrawHealth(hero, enemy);
 
 				if (enemy.Health <= 0)
 				{
 					Console.WriteLine("Victory!");
 					break;
 				}
-				enemy.Attack(hero);
 				
+				System.Threading.Thread.Sleep(1000);
+				
+				// ENEMY TURN
+				enemy.Attack(hero);
+				DrawHealth(hero, enemy);
+				System.Threading.Thread.Sleep(1000);
+				
+				if (hero.Health <= 0)
+				{
+					Console.WriteLine("You have been defeated... Game Over.");
+					break; 
+				}
 				
 			}
-			Console.WriteLine("Game over!");
 		}
 	}
 };
