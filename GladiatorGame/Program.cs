@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ This is an auto battle sim about gladiator fights
+ */
+
+using System;
 
 namespace GladiatorArena
 {
@@ -105,10 +109,9 @@ namespace GladiatorArena
 				
 				if (hero.Health <= 0)
 				{
-					Console.WriteLine("You have been defeated... Game Over.");
+					Console.WriteLine("You have been vanquished in the arena.");
 					break; 
 				}
-				
 			}
 		}
 	}
