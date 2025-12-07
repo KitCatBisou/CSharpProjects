@@ -33,11 +33,13 @@ namespace GladiatorArena
 			{
 				hitvalue *= 2;
 				enemy.Health -= hitvalue;
+				Console.ForegroundColor = ConsoleColor.Red;
 				Console.WriteLine($"Critical hit!\n{Name} hits {enemy.Name} for {hitvalue} damage!");
 			}
 			else
 			{
 				enemy.Health -= hitvalue;
+				Console.ForegroundColor = ConsoleColor.Cyan;
 				Console.WriteLine($"{Name} hits {enemy.Name} for {hitvalue} damage!");
 			}
 		}
