@@ -2,6 +2,13 @@
  This is an auto battle sim about gladiator fights
  */
 
+/*
+ Add armor system and different armors and weapons
+ At the end of each fight player gets a choice between an armor or a weapon
+ maybe big lists with rng percentages for each item?
+ fighters get stronger each level
+ */
+
 using System;
 
 namespace GladiatorArena
@@ -16,6 +23,7 @@ namespace GladiatorArena
 		public string Name;
 		public int Health;
 		public int Damage;
+		public int Armor;
 
 		public Gladiator(string incomingName, int incomingHealth, int incomingDamage)
 		{
