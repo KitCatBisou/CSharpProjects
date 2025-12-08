@@ -14,9 +14,39 @@ using System;
 namespace GladiatorArena
 {
 	/*
-	 GLADIATOR CLASS WITH FUNCTION FOR ATTACK
-	 USES RNG SYSTEM WITH RANDOM
+	 Weapon and Armor classes and constructors
 	 */
+
+	class Weapon
+	{
+		public string Name;
+		public int DamageBonus;
+
+		public Weapon(string name, int damageBonus)
+		{
+			Name = name;
+			DamageBonus = damageBonus;
+		}
+	}
+
+	class Armor
+	{
+		public string Name;
+		public int DefenseBonus;
+
+		public Armor(string name, int defenseBonus)
+		{
+			Name = name;
+			DefenseBonus = defenseBonus;
+		}
+	}
+	
+	
+	/*
+	 GLADIATOR CLASS WITH FUNCTION FOR ATTACK
+	 USES RNG SYSTEM
+	 */
+	
 	class Gladiator
 	{
 		static Random rnd = new Random();
@@ -24,13 +54,16 @@ namespace GladiatorArena
 		public int Health;
 		public int Damage;
 		public int Armor;
-
+		
+		
+		//Gladiator Constructor
 		public Gladiator(string incomingName, int incomingHealth, int incomingDamage)
 		{
 			Name = incomingName;
 			Health = incomingHealth;
 			Damage = incomingDamage;
 		}
+		
 		public void Attack(Gladiator enemy)
 		{
 			int hitvalue = rnd.Next(Damage - 2, Damage + 2);
