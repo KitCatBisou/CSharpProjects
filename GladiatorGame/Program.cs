@@ -4,7 +4,6 @@
 
 /*
  TODO:
- -Add more weapons and armor
  -implement the attack and defense bonuses on the gameplay
  -At the end of each fight player gets a choice between an armor or a weapon
  -maybe big lists with rng percentages for each item?
@@ -74,6 +73,7 @@ namespace GladiatorArena
 			
 			if (chance > 0 && chance < 15)
 			{
+				Console.ForegroundColor = ConsoleColor.DarkCyan;
 				Console.WriteLine($"{Name} misses!");
 			}
 			else if (chance > 95 && chance <= 100)
@@ -180,7 +180,21 @@ namespace GladiatorArena
 			
 			//GAME BEGINS
 			
-			Console.WriteLine("--------------\nLet the game begin:");
+			Console.WriteLine("--------------\nYou walk into the colosseum in the Imperial Capital.\n" +
+			                  "Taken from your home town as a slave during the Imperial Wars of Conquest, you are now forced to battle for the amusement of your captors.\n" +
+			                  "You walk in with nothing but your life experience.\n" +
+			                  "What were you before the war:\n" +
+			                  "- A thief forced to steal, from a young age, to feed your family. (Press 1)\n" +
+			                  "- A conscript in the army, you've done training but never actually fought in the war. (Press 2)\n" +
+			                  "- A miner, years of hard work have given you a harder body (Press 3)");
+			string life = Console.ReadLine();
+			
+			Console.WriteLine("---------------\n" +
+			                  "On the other end of the arena you see a bare handed fighter, he looks as scared as you");
+			System.Threading.Thread.Sleep(3000);
+			Console.WriteLine("LET THE FIGHT BEGIN");
+			System.Threading.Thread.Sleep(1000);
+			
 
 			while (hero.Health > 0 && enemy.Health > 0)
 			{
