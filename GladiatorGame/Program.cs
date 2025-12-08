@@ -109,9 +109,21 @@ namespace GladiatorArena
 		{
 			List<Weapon> weapons = new List<Weapon>();
 			
-			weapons.Add(new Weapon("Club", 1));
-			weapons.Add(new Weapon("Dagger", 2));
-			weapons.Add(new Weapon("Sickle", 3));
+			weapons.Add(new Weapon("Wooden Club", 1));
+			weapons.Add(new Weapon("Iron Dagger", 2));
+			weapons.Add(new Weapon("Iron Sickle", 3));
+			weapons.Add(new Weapon("Spiked Club", 4));
+			weapons.Add(new Weapon("Rusty Sword", 5));
+			weapons.Add(new Weapon("Iron Spear", 6));
+			weapons.Add(new Weapon("Iron Shortsword", 7));
+			weapons.Add(new Weapon("Steel Shortsword", 8));
+			weapons.Add(new Weapon("Steel War Axe", 9));
+			weapons.Add(new Weapon("Ebony Dagger", 10));
+			weapons.Add(new Weapon("Steel Longsword", 11));
+			weapons.Add(new Weapon("Claymore", 12));
+			weapons.Add(new Weapon("Eastern Sword", 13));
+			weapons.Add(new Weapon("Dwarven Battle Axe", 14));
+			weapons.Add(new Weapon("Ebony Claymore",15));
 			
 			return weapons;
 		}
@@ -121,6 +133,17 @@ namespace GladiatorArena
 			List<Armor> armors = new List<Armor>();
 			
 			armors.Add(new Armor("Ragged Cloth", 1));
+			armors.Add(new Armor("Leather Armor", 2));
+			armors.Add(new Armor("Nordic Bearskin Armor", 3));
+			armors.Add(new Armor("Chain Armor", 3));
+			armors.Add(new Armor("Iron Armor", 4));
+			armors.Add(new Armor("Imperial Leather Armor", 5));
+			armors.Add(new Armor("Steel Armor", 6));
+			armors.Add(new Armor("Nordic Trollbone Armor", 7));
+			armors.Add(new Armor("Imperial Silver Armor", 8));
+			armors.Add(new Armor("Imperial Templar Knight Armor", 9));
+			armors.Add(new Armor("Dwarven Armor", 10));
+			armors.Add(new Armor("Ebony Armor", 11));
 
 			return armors;
 		}
