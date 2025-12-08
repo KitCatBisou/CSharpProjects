@@ -91,11 +91,36 @@ namespace GladiatorArena
 
 	}
 	
+	
 	/*
-	 MAIN GAME FUNCTION
+	 MAIN GAME CLASS
 	 */
+	
 	class Program
 	{
+		
+		/*
+	 HELPER METHODS TO BUILD WEAPONS AND ARMOR LISTS
+	 */
+	
+		static List<Weapon> InitializeWeapons()
+		{
+			List<Weapon> weapons = new List<Weapon>();
+			
+			weapons.Add(new Weapon("Dagger", 2));
+			return weapons;
+		}
+
+		static List<Armor> InitializeArmor()
+		{
+			List<Armor> armors = new List<Armor>();
+			
+			armors.Add(new Armor("Ragged Cloth", 1));
+
+			return armors;
+		}
+		
+		
 		/*
 		 DISPLAY HEALTH FUNCTION
 		 */
