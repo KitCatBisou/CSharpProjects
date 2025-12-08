@@ -1,104 +1,61 @@
-﻿bool gameRunning = true;
-List<GameScore> scoreHistory = new List<GameScore>();
+﻿using mathGame.Core;
+using mathGame.Models;
 
-while (gameRunning)
-{
-    Console.WriteLine("--- MENU ---");
-    Console.WriteLine("P - Play Game");
-    Console.WriteLine("H - View Score History");
-    Console.WriteLine("Q - Quit");
-    string choice = Console.ReadLine().ToUpper();
+    var gameState = new GameState();
+    var gameEngine = new GameEngine();
+    var ui = new UserInterface();
+    var scoreManager = new ScoreManager(gameState.ScoreHistory);
 
-    if (choice == "Q")
+    while (gameState.IsRunning)
     {
-        gameRunning = false;
-    }
-    else if (choice == "H")
-    {
-        for (int i = 0; i < scoreHistory.Count; i++)
+        ui.DisplayMenu();
+        string choice = ui.GetMenuChoice();
+
+        switch (choice)
         {
-            Console.WriteLine($"{i + 1}. {scoreHistory[i].Name} {scoreHistory[i].Points}");
+            case "Q":
+                gameState.IsRunning = false;
+                Console.WriteLine("Thanks for playing!");
+                break;
+
+            case "H":
+                scoreManager.DisplayHistory();
+                break;
+
+            case "P":
+                PlayGame(gameEngine, ui, scoreManager);
+                break;
+
+            default:
+                Console.WriteLine("Invalid choice. Please try again.");
+                break;
         }
     }
 
-    else if (choice == "P")
+    static void PlayGame(
+        GameEngine engine, 
+        UserInterface ui, 
+        ScoreManager scoreManager)
     {
-        Random rnd = new Random();
-        int questions = 5;
-        string question = "null";
-        int answer = 0;
+        ui.DisplayGameStart();
+        
         int points = 0;
-        string userName = "null";
+        const int totalQuestions = 5;
         
-        Console.WriteLine("--- MATH GAME START ---");
-        for (int i = 0; i < questions; i++) {
-            int num1 = rnd.Next(1, 100);
-            int num2 = rnd.Next(1, 100);
-            int signal = rnd.Next(4);
+        for (int i = 0; i < totalQuestions; i++)
+        {
+        int correctAnswer = engine.GenerateQuestion(i + 1, out string question);
 
-            switch (signal) {
-                case 0:
-                    question = $"Question {i + 1}: How much is {num1} + {num2}?";
-                    answer = num1 + num2;
-                    break;
-                case 1:
-                    question = $"Question {i + 1}: How much is {num1} - {num2}?";
-                    answer = num1 - num2;
-                    break;
-                case 2:
-                    question = $"Question {i + 1}: How much is {num1} * {num2}?";
-                    answer = num1 * num2;
-                    break;
-                case 3:
-                    while (num1 % num2 != 0)
-                    {
-                        num1 = rnd.Next(1, 100);
-                        num2 = rnd.Next(1, 100);
-                    }
-
-                    question = $"Question {i + 1}: How much is {num1} / {num2}?"; 
-                    answer = num1 / num2;
-                    break;
-            }
-    
-            Console.WriteLine(question);
-            string userAnswer = Console.ReadLine();
-    
-            if (int.TryParse(userAnswer, out int userAnswerInt))
-            {
-                if (userAnswerInt == answer)
-                {
-                    Console.WriteLine("Correct!");
-                    points++;
-                    Console.WriteLine($"Points: {points}");
-                }
-                else
-                {
-                    Console.WriteLine($"Incorrect!\nThe answer is {answer}");
-                    Console.WriteLine($"Points: {points}");
-                }
-            }
-            else
-            {
-                Console.WriteLine("That is not a valid number!");
-            }
-   
-            Console.WriteLine($"--------------------------");
+        int userAnswer = ui.GetUserAnswer(question);
+            bool isCorrect = userAnswer == correctAnswer;
+            
+            if (isCorrect) points++;
+            
+            ui.DisplayResult(isCorrect, correctAnswer, points);
         }
-
-        Console.WriteLine($"Game over\nYou finished with {points} points!");
-        Console.WriteLine($"Write your username");
-        userName = Console.ReadLine();
-        GameScore newEntry = new GameScore();
-        newEntry.Name = userName;
-        newEntry.Points = points;
         
-        scoreHistory.Add(newEntry);
+        ui.DisplayGameOver(points);
+        
+        string userName = ui.GetUserName();
+        scoreManager.AddScore(userName, points);
     }
-}
-
-class GameScore 
-{
-    public string Name;
-    public int Points;
-}
